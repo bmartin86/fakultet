@@ -16,8 +16,8 @@ class CreateDvoranasTable extends Migration
         Schema::create('dvoranas', function (Blueprint $table) {
             $table->tinyIncrements('dvorana_id');
             $table->string('naziv',5);
-            $table->smallInteger('kapacitet')->nullable();
-            $table->timestamp('last_update')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->smallInteger('kapacitet')->unsigned()->nullable();
+            $table->timestamps();
         });
     }
 

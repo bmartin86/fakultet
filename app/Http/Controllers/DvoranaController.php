@@ -25,7 +25,7 @@ class DvoranaController extends Controller
      */
     public function create()
     {
-        //
+        return view ('dvoranas.create');
     }
 
     /**
@@ -34,9 +34,17 @@ class DvoranaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Dvorana $dvorana)
     {
-        //
+        $validatedData = $request->validate([
+            'naziv' => 'required|string|max:5|alpha_num',
+            'kapacitet' => 'numeric|between:0,9999',
+        ]);
+        $dvorana->naziv = $request->input('naziv');
+        $dvorana->kapacitet = $request->input('kapacitet');
+        $dvorana->save(); 
+
+        return redirect()->route('dvoranas.index')->with('success', 'Film added!');
     }
 
     /**
@@ -47,7 +55,7 @@ class DvoranaController extends Controller
      */
     public function show(Dvorana $dvorana)
     {
-        //
+        return view('dvoranas.show', ['dvorana' => $dvorana]);
     }
 
     /**
@@ -58,7 +66,7 @@ class DvoranaController extends Controller
      */
     public function edit(Dvorana $dvorana)
     {
-        //
+        return view('dvoranas.edit', ['dvorana' => $dvorana]);
     }
 
     /**
@@ -69,8 +77,17 @@ class DvoranaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Dvorana $dvorana)
-    {
-        //
+    {    
+      $validatedData = $request->validate([
+            'dvorana_id' => 'required|numeric',
+            'naziv' => 'required|string|max:5|alpha_num',
+            'kapacitet' => 'numeric|between:0,9999',
+        ]);
+        $dvorana->naziv = $request->input('naziv');
+        $dvorana->kapacitet = $request->input('kapacitet');
+        $dvorana->save(); 
+
+        return redirect()->route('dvoranas.index');
     }
 
     /**
@@ -81,6 +98,7 @@ class DvoranaController extends Controller
      */
     public function destroy(Dvorana $dvorana)
     {
-        //
+        $dvorana->delete();
+        return redirect()->route('dvoranas.index');
     }
 }

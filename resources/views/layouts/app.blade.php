@@ -8,6 +8,9 @@
         <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">  
     </head>
     <body>
+        @section('sidebar')
+        &nbsp;<a href="{{route("home")}}"><h4 style="color:blue"><b>ALGEBRA FAKULTET</b></h4></a>
+        @show
         <div class="container">
             @yield('content')
         </div>

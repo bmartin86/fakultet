@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Uredi jezik ')
+@section('title', 'Uredi dvoranu ')
 @section('content_header')
-<h1>Jezik</h1>
+<h1>Dvorana</h1>
 @stop
 
 
@@ -20,24 +20,29 @@
     <div class="alert alert-success">{{ $message }}</div>
 @enderror
 
-<h3>Uredi jezik:</h3>
+<h3>Uredi dvoranu:</h3>
 
 
-<form method="POST" action="/languages/{{$jez->language_id}}" enctype="multipart/form-data">
+<form method="POST" action="/dvoranas/{{$dvorana->dvorana_id}}" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="form-group">
-        <label for="language_id"> id:</label><br>
-        <input maxlength="191" type="number" name="language_id" required="true" readonly="true"
-               value="{{ $jez->language_id }}"><br>
+        <label for="dvorana_id"> id:</label><br>
+        <input maxlength="3" type="number" name="dvorana_id" required="true" readonly="true"
+               value="{{ $dvorana->dvorana_id }}"><br>
 
-        <label for="name"> Naziv jezika:</label>
+        <label for="naziv"> Naziv dvorane:</label>
         <br>
-        <input maxlength="20" type="text" name="name" required="true"
-               value="{{ $jez->name }}"><br>
+        <input maxlength="5" type="text" name="naziv" required="true"
+               value="{{ $dvorana->naziv }}"><br>
+        
+        <label for="kapacitet"> Broj mjesta:</label>
+        <br>
+        <input maxlength="4" type="number" name="kapacitet" required="false"
+               value="{{ $dvorana->kapacitet }}"><br>
     </div>
     <div class="form-group">
-        <input type="submit" name="actor_sbm" value="Izmijeni detalje jezika">
+        <input type="submit" name="dvorana_sbm" value="Spremi promjene">
     </div>
 </form>
 

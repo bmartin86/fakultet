@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Dodaj novi jezik')
+@section('title', 'Dodaj novu dvoranu')
 @section('content_header')
-<h1>Jezici</h1>
+<h1>Dvorana</h1>
 @stop
 
 
@@ -26,19 +26,24 @@
     </div>
 @endif
 
-<h3>Dodaj novi jezik:</h3>
+<h3>Dodaj novu dvoranu:</h3>
 
 
-<form method="POST" action="/languages" enctype="multipart/form-data">
+<form method="POST" action="/dvoranas" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-        <label for="name"> Naziv jezika:</label>
+        <label for="naziv"> Naziv dvorane:</label>
         <br>
-        <input maxlength="20" type="text" name="name" required="true"
+        <input maxlength="5" type="text" name="naziv" required="true"
                value=""><br>
+        <label for="kapacitet"> Broj mjesta:</label
+        ><br>
+        <input maxlength="6" type="number" min=0 name="kapacitet" required="false"
+               value="">
+        <br>
     </div>
     <div class="form-group">
-        <input type="submit" name="actor_sbm" value="Dodaj novi jezik">
+        <input type="submit" name="dvorana_sbm" value="Unos">
     </div>
 </form>
 

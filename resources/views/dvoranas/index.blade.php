@@ -27,8 +27,9 @@
         {{ session('status') }}
     </div>
 @endif
-
-<h3>Lista dvorana:</h3>
+<br>
+<h4>Lista dvorana:</h4>
+<hr>
 
 <ol> 
     @foreach ($dvorana as $d)
@@ -46,7 +47,7 @@
             </button>
         </form>  
 
-        <a href='{{url("/dvoranas/{$d->dvorana_id}")}}'> Dvorana:&nbsp;{{$d->naziv }} kapacitet:({{$d->kapacitet}})</a>
+        <a href='{{url("/dvoranas/{$d->dvorana_id}")}}'> Dvorana:&nbsp;{{$d->naziv }}</a>
     </li>
 
     @endforeach
